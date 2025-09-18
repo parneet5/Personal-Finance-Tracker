@@ -1,4 +1,5 @@
-const API_BASE_URL = "https://personal-finance-tracker-api-1-8dis.onrender.com";
+const API_BASE_URL = "https://personal-finance-tracker-api-1-8dis.onrender.com/api";
+
 
 async function apiRequest(endpoint, method = "GET", body = null, token = null) {
   const options = {
@@ -180,6 +181,7 @@ document.getElementById("logout-btn")?.addEventListener("click", () => {
   alert("You have been logged out.");
   window.location.href = "login.html";
 });
+
 
 
 
