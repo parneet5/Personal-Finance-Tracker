@@ -1,11 +1,5 @@
-// ==============================
-// CONFIGURATION
-// ==============================
-
-// Backend URL on Render
 const API_BASE_URL = "https://personal-finance-tracker-api-1-8dis.onrender.com";
 
-// Helper function for making API requests
 async function apiRequest(endpoint, method = "GET", body = null, token = null) {
   const options = {
     method,
@@ -26,11 +20,7 @@ async function apiRequest(endpoint, method = "GET", body = null, token = null) {
   return response.json();
 }
 
-// ==============================
-// SIGNUP FUNCTIONALITY
-// ==============================
 
-// Triggered when user clicks the Sign Up button
 document.getElementById("btnSignup")?.addEventListener("click", async () => {
   const name = document.getElementById("signupName").value.trim();
   const email = document.getElementById("signupEmail").value.trim();
@@ -66,11 +56,6 @@ document.getElementById("btnSignup")?.addEventListener("click", async () => {
   }
 });
 
-// ==============================
-// LOGIN FUNCTIONALITY
-// ==============================
-
-// Triggered when user clicks the Login button
 document.getElementById("btnLogin")?.addEventListener("click", async () => {
   const email = document.getElementById("loginEmail").value.trim();
   const password = document.getElementById("loginPassword").value.trim();
@@ -87,13 +72,12 @@ document.getElementById("btnLogin")?.addEventListener("click", async () => {
     const result = await apiRequest("/login", "POST", { email, password });
 
     if (result.success && result.token) {
-      // Store the JWT token in local storage
+     
       localStorage.setItem("token", result.token);
 
       msgElement.innerText = "✅ Login successful! Redirecting to dashboard...";
       msgElement.style.color = "green";
 
-      // Redirect to dashboard after 1 second
       setTimeout(() => {
         window.location.href = "dashboard.html";
       }, 1000);
@@ -108,11 +92,6 @@ document.getElementById("btnLogin")?.addEventListener("click", async () => {
   }
 });
 
-// ==============================
-// ADD TRANSACTION
-// ==============================
-
-// Triggered when user submits the transaction form
 document.getElementById("transaction-form")?.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -156,10 +135,6 @@ document.getElementById("transaction-form")?.addEventListener("submit", async (e
   }
 });
 
-// ==============================
-// LOAD TRANSACTIONS
-// ==============================
-
 async function loadTransactions() {
   const token = localStorage.getItem("token");
   if (!token) {
@@ -200,15 +175,12 @@ async function loadTransactions() {
   }
 }
 
-// ==============================
-// LOGOUT
-// ==============================
-
 document.getElementById("logout-btn")?.addEventListener("click", () => {
   localStorage.removeItem("token");
   alert("You have been logged out.");
   window.location.href = "login.html";
 });
+
 
 
 
